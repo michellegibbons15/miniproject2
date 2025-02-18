@@ -1,0 +1,27 @@
+/* Slideshow Container */
+.slideshow-container {
+    width: 90%; 
+    max-width: 3000px; 
+    height: 700px; 
+    margin: 20px auto; 
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+      /* margin-left: 100px;
+      margin-right: 100px;
+      position: relative;
+      overflow: hidden; */
+    }
+    
+    /* Slideshow Images */
+    .slide-img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      /* display: none; */
+    }
+    
+    /* Show First Image */
+    .slides:first-child .slide-img {
+      display: block;
+    }
