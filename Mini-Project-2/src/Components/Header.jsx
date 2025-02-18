@@ -14,7 +14,7 @@ const Header = () => (
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
-        <a href="#">Explore</a>
+        <a href="#">Explore</a> 
         <a href="#">Leagues</a>
         <a href="#">Community</a>
         <div className="profile-icon">
