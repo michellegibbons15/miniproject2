@@ -1,0 +1,47 @@
+
+.calendar {
+  display: flex;
+    width: 48%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid black;
+  }
+  .calendar button{
+    background-color: white;
+    color:rgb(1, 80, 1);
+    font-weight: bold;
+    border: 1px solid black
+  }
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: rgba(1, 80, 1, 0.356);
+    color: white;
+    border: 1px solid black;
+  }
+  .calendar-days div {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .calendar-dates div {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: white;
+  }
+.events {
+    width: 48%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    padding: 5px;
+    height: 370px;
+  }
+  
