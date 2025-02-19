@@ -1,14 +1,17 @@
 import React from 'react'
 import "../../Styles/Dashboard/Welcome.css"
 // import soccerImg from "../../assets/soccer.jpg"
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faBell} from '@fortawesome/free-solid-svg-icons'
+
 
 const Welcome = () => {
   return (
     <div className="Welcome">
-      {/* <img src={soccerImg} alt="Michelle" class="profile"/> */}
-        <div class="welcome-bar">
+      {/* <img src={soccerImg} alt="Michelle" className="profile"/> */}
+        <div className="welcome-bar">
           <h1>Welcome back, Michelle!</h1>
-          <h4><i class="fa-solid fa-bell"></i>Notifications</h4>
+          <h4><FontAwesomeIcon icon={faBell} />Notifications</h4>
         </div>
     </div>
   )

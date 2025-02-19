@@ -1,5 +1,5 @@
 /* recs */
-.container {
+.DashboardContainer {
   display: flex;
   justify-content: space-between;
   align-items: flex-start; 
@@ -8,7 +8,7 @@
   padding: 30px;
   margin: 0 auto;
   width: 80vw;
-  height: 60vh;
+  height: 80vh;
 }
 .suggestions {
     width: 48%;

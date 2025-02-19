@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../Components/header'
+import Header from '../Components/Header'
 import Slideshow from '../Components/Landing/Slideshow'
 import Homepage from '../Components/Landing/Homepage'
 import Reviews from '../Components/Landing/Reviews'

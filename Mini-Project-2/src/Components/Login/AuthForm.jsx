@@ -6,7 +6,7 @@ export default function AuthForms() {
   const toggleForms = (formType) => setActiveForm(formType);
 
   return (
-    <div className="container">
+    <div className="LoginContainer">
         <div id="loginForm" className={`form-container ${activeForm === "login" ? "active" : "hidden"}`}>
           <h2>Log In</h2>
           <form>

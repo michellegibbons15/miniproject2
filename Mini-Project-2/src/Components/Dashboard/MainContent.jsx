@@ -4,16 +4,18 @@ import fieldhockeyImg from "../../assets/dashboard/FH.jpg"
 import Welcome from './Welcome'
 import Calendar from './Calendar'
 import Recommendations from './Recommendations'
+import GroupList from './GroupList'
 
 const MainContent = () => {
   return (
     <>
-    <div className="picture">
+    <div className="DashboardPicture">
       <img src={fieldhockeyImg} alt="FieldHockey"/>
     </div>
-    <div className="container">
+    <div className="DashboardContainer">
       <Welcome/>
       <Calendar/>
+      <GroupList/>
       <Recommendations/>
     </div>
     </>

@@ -1,11 +1,13 @@
 import React from "react";
 import "../../Styles/Dashboard/Recommendations.css";
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
 
 const Recommendations = () => {
   return (
       <div className="suggestions">
         <h3>
-          <i class="fa-solid fa-location-dot"></i>Local Recommendations
+        <FontAwesomeIcon icon={faLocationDot} />Local Recommendations
         </h3>
         <h4>
           <a href="#">Explore</a> these other facilities:

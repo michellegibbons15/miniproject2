@@ -16,13 +16,13 @@
   }
 
    /* Buttons */
-   .button {
+   .LandingButton {
     display: flex;
     justify-content: center;
     gap: 1rem;
   }
   
-  .btn {
+  .Landing-btn {
     background-color: rgb(1, 80, 1);
     color: white;
     padding: 1rem 2rem;
