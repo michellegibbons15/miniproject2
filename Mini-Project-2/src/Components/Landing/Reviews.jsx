@@ -1,11 +1,13 @@
 import React from 'react'
 import "../../Styles/Landing/Reviews.css"
 
-const Reviews = () => (
-    <div className="reviews-container">
-      <h2>What People Are Saying</h2>
-      <div id="card-list"></div>
+const Reviews = ({text, author}) => {
+  return (
+    <div className="review-card">
+      <div className="review-title">{text}</div>
+      <div className="review-author">{author}</div>
     </div>
   );
+}
   
   export default Reviews;

@@ -2,15 +2,16 @@ import React from "react";
 import "../../Styles/Dashboard/Recommendations.css";
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
+import { NavLink } from "react-router-dom";
 
 const Recommendations = () => {
   return (
       <div className="suggestions">
         <h3>
-        <FontAwesomeIcon icon={faLocationDot} />Local Recommendations
+        <FontAwesomeIcon icon={faLocationDot} style={{ marginRight: '8px'}} />Local Recommendations
         </h3>
         <h4>
-          <a href="#">Explore</a> these other facilities:
+          <NavLink to="/explore">Explore what else is around:</NavLink>
         </h4>
         <ul>
           <li>Ukrops Park</li>

@@ -3,7 +3,8 @@ import Dashboard from './Pages/Dashboard'
 import Explore from './Pages/Explore'
 import Landing from './Pages/Landing'
 import Login from './Pages/Login'
-import 'leaflet/dist/leaflet.css';
+import AppRoutes from './Routes/AppRoutes'
+
 
 
 
@@ -13,8 +14,9 @@ function App() {
     <>
     {/* <Landing/>  */}
     {/* <Login/> */}
-    <Dashboard/>
+    {/* <Dashboard/> */}
     {/* <Explore/> */}
+    <AppRoutes/>
     </>
   )
 }

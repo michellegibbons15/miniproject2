@@ -1,5 +1,5 @@
  /* reviews */
- .reviews-container {
+ .review {
     width: 80%;
     margin: 40px auto;
     padding: 20px;
@@ -9,33 +9,38 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  .reviews-container h2 {
+  .review h3 {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
     color: rgb(1, 80, 1);
+    text-align: center;
   }
-    #card-list{
+  /* review cards */
+    #review-list{
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
      
    }
-    .card {
+    .review-card{
       width: 23%;
       padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       border: 1px solid #ccc;
       border-radius: 8px;
       background-color: #ffffff;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-    .card-title {
+    .review-title {
       font-weight: 600;
     font-size: 1.1em;
     padding-bottom: 5px;
     }
-    .card-text {
+    .review-author {
       font-size: 1em;
       color: #333;
     }

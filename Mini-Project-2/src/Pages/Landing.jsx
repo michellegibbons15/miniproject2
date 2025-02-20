@@ -2,8 +2,8 @@ import React from 'react'
 import Header from '../Components/Header'
 import Slideshow from '../Components/Landing/Slideshow'
 import Homepage from '../Components/Landing/Homepage'
-import Reviews from '../Components/Landing/Reviews'
 import Footer from '../Components/Landing/Footer'
+import ReviewList from '../Components/Landing/ReviewList'
 
 const Landing = () => {
   return (
@@ -12,7 +12,7 @@ const Landing = () => {
       <main>
         <Slideshow/>
         <Homepage />
-        <Reviews />
+        <ReviewList/>
       </main>
       <Footer />
     </div>

@@ -3,15 +3,15 @@ import Group from './Groups'
 
 const groups = [
   {
-    imageUrl: 'images/dg.jpeg',
+    imageUrl: 'src/assets/dashboard/dg.jpeg',
     text: '804 Disc Golf',
   },
   {
-    imageUrl: 'images/soccerball.jpg',
+    imageUrl: 'src/assets/dashboard/soccerball.jpg',
     text: '804 Pick-Up',
   },
   {
-    imageUrl: 'images/SCOR.jpg',
+    imageUrl: 'src/assets/dashboard/SCOR.jpg',
     text: 'SCOR',
   },
 ];

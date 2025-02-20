@@ -17,45 +17,80 @@ const Calendar = () => {
   const [events, setEvents] = useState([]);
   const [eventText, setEventText] = useState("");
   const [eventTime, setEventTime] = useState("");
+  const [editingEvent, setEditingEvent] = useState(null);
 
-  const dayNames = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  // Load events from local storage on mount
   useEffect(() => {
     const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
     setEvents(storedEvents);
   }, []);
 
-  // Save events to local storage whenever they change
   useEffect(() => {
     localStorage.setItem("events", JSON.stringify(events));
   }, [events]);
 
-  const addEvent = () => {
+  const addOrEditEvent = () => {
     if (!eventText.trim() || !eventTime.trim()) return;
-    const newEvent = {
-      date: format(selectedDate, "yyyy-MM-dd"),
-      time: eventTime,
-      text: eventText,
-    };
-    setEvents([...events, newEvent]);
+
+    // Ensure correct EST date formatting
+    const selectedDateEST = format(
+      new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        selectedDate.getDate()
+      ),
+      "yyyy-MM-dd"
+    );
+
+    if (editingEvent) {
+      const updatedEvents = events.map((event) =>
+        event === editingEvent
+          ? { ...event, text: eventText, time: eventTime, date: selectedDateEST }
+          : event
+      );
+      setEvents(updatedEvents);
+      setEditingEvent(null);
+    } else {
+      const newEvent = {
+        date: selectedDateEST,
+        time: eventTime,
+        text: eventText,
+      };
+      setEvents([...events, newEvent]);
+    }
+
     setSelectedDate(null);
     setEventText("");
     setEventTime("");
   };
 
+  const startEditing = (event) => {
+    setEditingEvent(event);
+    setEventText(event.text);
+    setEventTime(event.time);
+    setSelectedDate(parseISO(event.date)); // Parse stored date properly
+  };
+
+  const cancelEditing = () => {
+    setEditingEvent(null);
+    setEventText("");
+    setEventTime("");
+    setSelectedDate(null);
+  };
+
+  const deleteEvent = (eventToDelete) => {
+    const updatedEvents = events.filter((event) => event !== eventToDelete);
+    setEvents(updatedEvents);
+  };
+
+  // Get current date in EST
+  const nowEST = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+  const nowESTDate = new Date(nowEST);
+
   const upcomingEvents = events.filter((event) =>
-    isBefore(new Date(), parseISO(event.date))
+    isBefore(nowESTDate, parseISO(event.date))
   );
   const pastEvents = events.filter((event) =>
-    isBefore(parseISO(event.date), new Date())
+    isBefore(parseISO(event.date), nowESTDate)
   );
 
   const daysInMonth = eachDayOfInterval({
@@ -63,16 +98,11 @@ const Calendar = () => {
     end: endOfMonth(currentDate),
   });
 
-  // Calculate the first day of the month (to adjust the starting position of the first date)
-  const firstDayOfMonth = startOfMonth(currentDate);
-  const firstDayIndex = firstDayOfMonth.getDay(); // 0 = Sunday, 1 = Monday, etc.
-
-  // Fill in empty spaces before the 1st day of the month
+  const firstDayIndex = startOfMonth(currentDate).getDay();
   const emptyDays = Array(firstDayIndex).fill(null);
 
   return (
     <div className="calendar">
-      {/* Calendar Section */}
       <div className="calendar-header">
         <h2>{format(currentDate, "MMMM yyyy")}</h2>
         <button onClick={() => setCurrentDate(subMonths(currentDate, 1))}>
@@ -81,17 +111,16 @@ const Calendar = () => {
         <button onClick={() => setCurrentDate(addMonths(currentDate, 1))}>
           Next →
         </button>
-        {/* Days of the week header */}
         <div className="calendar-days-header">
-          {dayNames.map((day) => (
+          {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day) => (
             <div key={day} className="calendar-day-name">
               {day}
             </div>
           ))}
         </div>
         <div className="calendar-days">
-        {emptyDays.map((_, index) => (
-            <div key={`empty-${index}`} className="calendar-day"></div> // Empty spaces before the first day
+          {emptyDays.map((_, index) => (
+            <div key={`empty-${index}`} className="calendar-day"></div>
           ))}
           {daysInMonth.map((day) => (
             <div
@@ -104,16 +133,10 @@ const Calendar = () => {
           ))}
         </div>
 
-        {/* Event Form with Time input */}
+        {/* Event Form */}
         {selectedDate && (
-          <div
-            style={{
-              marginTop: "10px",
-              padding: "10px",
-              border: "1px solid gray",
-            }}
-          >
-            <h4>Add Event for {format(selectedDate, "PPP")}</h4>
+          <div className="event-form">
+            <h4>{editingEvent ? `Edit Event` : `Add Event`} for {format(selectedDate, "PPP")}</h4>
             <input
               type="text"
               value={eventText}
@@ -125,25 +148,23 @@ const Calendar = () => {
               value={eventTime}
               onChange={(e) => setEventTime(e.target.value)}
             />
-            <button onClick={addEvent}>Add</button>
-            <button onClick={() => setSelectedDate(null)}>Cancel</button>
+            <button onClick={addOrEditEvent}>{editingEvent ? "Update" : "Add"}</button>
+            <button onClick={cancelEditing}>Cancel</button>
           </div>
         )}
       </div>
 
-      {/* Events Section */}
+      {/* Events List */}
       <div className="events">
         <h3>Upcoming Events</h3>
         {upcomingEvents.length === 0 ? (
           <p>No upcoming events</p>
         ) : (
           upcomingEvents.map((event, index) => (
-            <div
-              key={index}
-              style={{ padding: "5px", borderBottom: "1px solid gray" }}
-            >
-              <strong>{format(new Date(event.date), "PPP")}</strong>:{" "}
-              {event.text}
+            <div key={index} className="event-item">
+              <strong>{format(parseISO(event.date), "PPP")}</strong>: {event.text} at {event.time}
+              <button onClick={() => startEditing(event)}>Edit</button>
+              <button onClick={() => deleteEvent(event)}>Delete</button>
             </div>
           ))
         )}
@@ -153,12 +174,10 @@ const Calendar = () => {
           <p>No past events</p>
         ) : (
           pastEvents.map((event, index) => (
-            <div
-              key={index}
-              style={{ padding: "5px", borderBottom: "1px solid gray" }}
-            >
-              <strong>{format(new Date(event.date), "PPP")}</strong>:{" "}
-              {event.text}
+            <div key={index} className="event-item">
+              <strong>{format(parseISO(event.date), "PPP")}</strong>: {event.text} at {event.time}
+              <button onClick={() => startEditing(event)}>Edit</button>
+              <button onClick={() => deleteEvent(event)}>Delete</button>
             </div>
           ))
         )}
@@ -166,4 +185,5 @@ const Calendar = () => {
     </div>
   );
 };
+
 export default Calendar;

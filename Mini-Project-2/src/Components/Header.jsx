@@ -15,12 +15,11 @@ const Header = () => (
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
-        <NavLink to="/explore">Explore</NavLink> 
-        <NavLink to="/leagues">Leagues</NavLink> 
-        <NavLink to="/community">Community</NavLink> 
-        <div className="profile-icon">
-          <i className="fa-regular fa-user"></i>
-        </div>
+        <NavLink to="/explore" style={{fontSize: '2rem'}}>Explore</NavLink> 
+        <NavLink to="/leagues" style={{fontSize: '2rem'}}>Leagues</NavLink> 
+        <NavLink to="/community" style={{fontSize: '2rem'}}>Community</NavLink>
+        <NavLink style={{fontSize: '2rem'}}>Messages</NavLink> 
+        <NavLink to="/dashboard"style={{fontSize: '2rem'}}>Profile</NavLink>
       </nav>
     </header>
   );

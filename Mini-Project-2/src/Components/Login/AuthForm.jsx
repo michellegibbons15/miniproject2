@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import "../../Styles/Login/AuthForm.css"
+import {NavLink} from 'react-router-dom'
 
 export default function AuthForms() {
   const [activeForm, setActiveForm] = useState("login");
@@ -7,6 +8,7 @@ export default function AuthForms() {
 
   return (
     <div className="LoginContainer">
+  {/* Log in Form */}
         <div id="loginForm" className={`form-container ${activeForm === "login" ? "active" : "hidden"}`}>
           <h2>Log In</h2>
           <form>
@@ -14,7 +16,9 @@ export default function AuthForms() {
             <input type="text" id="first" name="first" placeholder="Enter your Username" required />
             <label htmlFor="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your Password" required />
-            <button type="button" onClick={() => window.location.href = '//michellegibbons15.github.io/miniproject1/dashboard/index.html'}>Log In</button>
+            <button type="button">
+              <NavLink to="/dashboard">Log In</NavLink>
+            </button>
             <label className="rememberMe">
               <input type="checkbox" className="checkbox" />Remember Me
             </label>
@@ -22,7 +26,7 @@ export default function AuthForms() {
             <p>Don't have an account? <a href="#" onClick={() => toggleForms("signup")}>Sign up</a></p>
           </form>
         </div>
-     
+  {/* Sign  up Form */}
         <div id="signupForm" className={`form-container ${activeForm === "signup" ? "active" : "hidden"}`}>
           <h2>Sign Up</h2>
           <form>
@@ -36,8 +40,7 @@ export default function AuthForms() {
             <p>Already have an account? <a href="#" onClick={() => toggleForms("login")}>Log in</a></p>
           </form>
         </div>
-      
-      
+  {/* Forgot Password Form */}
         <div id="forgotPasswordForm" className={`form-container ${activeForm === "forgotPassword" ? "active" : "hidden"}`}>
           <h2>Forgot Password?</h2>
           <form>
