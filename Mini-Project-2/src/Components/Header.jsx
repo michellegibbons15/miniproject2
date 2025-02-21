@@ -2,6 +2,8 @@ import React from 'react'
 import logo from "../assets/logo-png3.png"
 import "../Styles/Header.css"
 import {NavLink} from 'react-router-dom'
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 
 const Header = () => (
     <header className="header">
@@ -12,7 +14,7 @@ const Header = () => (
         <div className="search-container">
           <input type="text" placeholder="Search..." />
           <button type="search">
-            <i className="fa-solid fa-magnifying-glass"></i>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </div>
         <NavLink to="/explore" style={{fontSize: '2rem'}}>Explore</NavLink> 

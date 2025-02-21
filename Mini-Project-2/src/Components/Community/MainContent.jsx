@@ -1,7 +1,8 @@
 import React from "react";
 import surfaceIMG from "../../assets/community/surface.jpeg"
 import "../../Styles/Community/MainContent.css"
-import Social from "./Social";
+import NewsFeed from "./NewsFeed";
+
 
 const MainContent = () => {
   return (
@@ -10,7 +11,7 @@ const MainContent = () => {
         <img src={surfaceIMG} alt="Surfaces" />
       </div>
       <div>
-        <Social/>
+        <NewsFeed/>
       </div>
     </>
   );

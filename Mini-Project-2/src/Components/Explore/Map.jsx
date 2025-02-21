@@ -1,4 +1,5 @@
 import React from "react";
+import "../../Styles/Explore/Map.css"
 
 const Map = () => {
   return (
@@ -8,11 +9,6 @@ const Map = () => {
         style={{width:"80%", height:"700px"}}
         allow="geolocation *"
       ></iframe>
-      <div style={{fontSize: "10px"}}>
-        <a href="https://mapline.com" target="_blank">
-          Mapping by Mapline
-        </a>
-      </div>
     </div>
   );
 };

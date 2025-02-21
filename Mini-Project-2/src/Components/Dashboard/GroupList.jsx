@@ -1,5 +1,7 @@
 import React from 'react';
 import Group from './Groups'
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUserGroup} from '@fortawesome/free-solid-svg-icons'
 
 const groups = [
   {
@@ -19,7 +21,7 @@ const groups = [
 const GroupList = () => {
   return (
     <div className="groups">
-        <h3>My Groups:</h3>
+        <h3> <FontAwesomeIcon icon={faUserGroup} style={{ marginRight: '8px'}} />My Groups:</h3>
     <div id="card-list">
       {groups.map((group, index) => (
         <Group key={index} imageUrl={group.imageUrl} text={group.text} />
